@@ -107,7 +107,7 @@ Spider.prototype.constructor = Spider;
 */
 
 /* LOAD 17
-  (paste into PlayState._spawnPlatforms)
+  (paste into PlayState._spawnPlatform)
     this._spawnEnemyWall(platform.x, platform.y, 'left');
     this._spawnEnemyWall(platform.x + sprite.width, platform.y, 'right');
 */

@@ -10,7 +10,7 @@
 */
 
 /* LOAD 3
-  (replace current contents of PlayState._spawnPlatforms with this code) 
+  (replace current contents of PlayState._spawnPlatform with this code) 
     let sprite = this.platforms.create(platform.x, platform.y, platform.image);
     this.game.physics.enable(sprite);
     sprite.body.allowGravity = false;
@@ -37,9 +37,9 @@ PlayState._handleCollisions = function () {
 
 /* LOAD 7
   (paste at the end of PlayState.init)
-this.keys.up.onDown.add(function () {
-    this.hero.jump();
-}, this);
+    this.keys.up.onDown.add(function () {
+        this.hero.jump();
+    }, this);
 */
 
 /* LOAD 8

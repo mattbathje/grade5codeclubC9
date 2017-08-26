@@ -206,6 +206,13 @@ Spider.prototype.update = function () {
     }
 };
 
+Spider.prototype.die = function () {
+    this.body.enable = false;
+    this.animations.play('die').onComplete.addOnce(function () { 
+        this.kill();
+    }, this);
+};
+
 var PlayState = {};
 const LEVEL_COUNT = 2;
 
@@ -267,7 +274,9 @@ PlayState.create = function () {
     this.sfx = {
         jump: this.game.add.audio('sfx:jump'),
         coin: this.game.add.audio('sfx:coin'),
-        stomp: this.game.add.audio('sfx:stomp')
+        stomp: this.game.add.audio('sfx:stomp'),
+        key: this.game.add.audio('sfx:key'),
+        door: this.game.add.audio('sfx:door')
     };
 
     this._loadLevel(this.game.cache.getJSON(`level:${this.level}`));
@@ -376,6 +385,7 @@ PlayState._createHud = function () {
     this.hud.add(coinIcon);
     this.hud.position.set(10, 10);
     this.hud.add(coinScoreImg);
+    this.hud.add(this.keyIcon);
 };
 
 PlayState._handleInput = function () {

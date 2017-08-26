@@ -6,7 +6,7 @@ window.onload = function () {
 */
 
 /* LOAD 2
-(paste before window.onload)
+  (paste before window.onload)
 var PlayState = {};
 
   (paste into window.onload)

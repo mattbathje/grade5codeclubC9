@@ -105,6 +105,14 @@ Hero.prototype.update = function () {
     }
 };
 
+Hero.prototype.die = function () {
+    this.alive = false;
+    this.body.enable = false;
+    this.animations.play('die').onComplete.addOnce(function () {
+        this.kill();
+    }, this);
+};
+
 Hero.prototype.move = function (direction) {
     const SPEED = 200;
     this.body.velocity.x = direction * SPEED;
@@ -170,10 +178,9 @@ Spider.prototype.update = function () {
     }
 };
 
-Hero.prototype.die = function () {
-    this.alive = false;
+Spider.prototype.die = function () {
     this.body.enable = false;
-    this.animations.play('die').onComplete.addOnce(function () {
+    this.animations.play('die').onComplete.addOnce(function () { 
         this.kill();
     }, this);
 };
@@ -241,7 +248,9 @@ PlayState.create = function () {
     this.sfx = {
         jump: this.game.add.audio('sfx:jump'),
         coin: this.game.add.audio('sfx:coin'),
-        stomp: this.game.add.audio('sfx:stomp')
+        stomp: this.game.add.audio('sfx:stomp'),
+        key: this.game.add.audio('sfx:key'),
+        door: this.game.add.audio('sfx:door')
     };
 
     this._loadLevel(this.game.cache.getJSON(`level:${this.level}`));
@@ -350,6 +359,7 @@ PlayState._createHud = function () {
     this.hud.add(coinIcon);
     this.hud.position.set(10, 10);
     this.hud.add(coinScoreImg);
+    this.hud.add(this.keyIcon);
 
 
 };

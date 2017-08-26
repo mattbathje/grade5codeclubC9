@@ -159,6 +159,13 @@ Spider.prototype.update = function () {
     }
 };
 
+Spider.prototype.die = function () {
+    this.body.enable = false;
+    this.animations.play('die').onComplete.addOnce(function () { 
+        this.kill();
+    }, this);
+};
+
 var PlayState = {};
 
 window.onload = function () {
@@ -291,8 +298,6 @@ PlayState._createHud = function () {
     this.hud.add(coinIcon);
     this.hud.position.set(10, 10);
     this.hud.add(coinScoreImg);
-
-
 };
 
 PlayState._handleInput = function () {
