@@ -72,12 +72,12 @@ Hero.prototype.die = function () {
 
 /* LOAD 8
   (paste at the beginning of PlayState.create)
-   this.camera.flash('#000000');
+   this.camera.flash('0x000000');
 */
 
 /* LOAD 9
   (in PlayState._onHeroVsDoor, replace the existing call to this.game.start.restart with these lines) 
-    this.camera.fade('#000000');
+    this.camera.fade('0x000000');
     this.camera.onFadeComplete.addOnce(function () {
         this.game.state.restart(true, false, {level: this.level + 1});
     }, this);
@@ -242,7 +242,7 @@ PlayState.preload = function () {
 };
 
 PlayState.create = function () {
-    this.camera.flash('#000000');
+    this.camera.flash('0x000000');
 
     this.game.add.image(0, 0, 'background');
     this.sfx = {
@@ -419,7 +419,7 @@ PlayState._onHeroVsKey = function (hero, key) {
 PlayState._onHeroVsDoor = function (hero, door) {
     this.sfx.door.play();
 
-    this.camera.fade('#000000');
+    this.camera.fade('0x000000');
     this.camera.onFadeComplete.addOnce(function () {
         this.game.state.restart(true, false, {level: this.level + 1});
     }, this);
